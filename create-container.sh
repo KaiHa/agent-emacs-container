@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+
+set -eu -o pipefail
+
+if machinectl show agent-emacs --property=State &> /dev/null
+then
+    echo "ERROR: Container agent-emacs still running.  Please power it off first!"
+    exit 1
+fi
+
+tmpdir=$(mktemp -d /var/cache/agent-emacs-XXXXXX.tmp)
+destdir=/var/lib/machines/agent-emacs
+
+chmod 755 ${tmpdir}
+mkdir -p ${tmpdir}/{boot,etc/nixos}
+cp configuration.nix ${tmpdir}/etc/nixos/
+nixos-install --no-root-password --root ${tmpdir}
+chattr -i ${destdir}/var/empty/
+rm --one-file-system -r ${destdir}
+chattr -i ${tmpdir}/var/empty/
+mv --no-target-directory ${tmpdir} ${destdir}
+
+mkdir -p /etc/systemd/nspawn/
+cat > /etc/systemd/nspawn/agent-emacs.nspawn <<-EOF
+[Exec]
+  PrivateUsers=identity
+[Files]
+  Bind=$(readlink -f ./target-home/):/home/kai/
+  BindReadOnly=/run/user/$(id -u kai)/wayland-1:/tmp/wayland-1
+[Network]
+  Private=off
+EOF
