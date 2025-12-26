@@ -1,0 +1,28 @@
+#+TITLE: Agent Emacs Container
+
+This repository contains a NixOS configuration for running Emacs and so called AI Agents in a containerized environment.
+
+* Usage
+
+1. *Prerequisites*: Ensure you have Nix or NixOS installed and configured.
+
+2. *Configuration*: The main configuration file is located at [[file:configuration.nix][configuration.nix]]. This file defines the system settings, packages, and services.
+
+3. *Building the System*: To build the system based on this configuration, run:
+
+#+begin_src sh
+  sudo ./create-container.sh
+#+end_src
+
+4. *Running the Container*:  To start the container and get a shell in it, run:
+
+#+begin_src sh
+  machinectl start agent-emacs
+  machinectl shell kai@agent-emacs
+#+end_src
+
+5. *Bind mount a Directory*: To bind mount a directory into the Container, run:
+
+#+begin_src sh
+  machinectl bind agent-emacs ~/my-project /home/kai/workspace
+#+end_src
