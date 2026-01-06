@@ -28,9 +28,15 @@ cat > /etc/systemd/nspawn/agent-emacs.nspawn <<-EOF
   PrivateUsers=identity
 [Files]
   Bind=$(readlink -f ./target-home/):/home/kai/
+  Bind=/tmp/.X11-unix
   BindReadOnly=/run/user/$(id -u kai)/wayland-1:/tmp/wayland-1
 [Network]
   Private=off
+EOF
+
+cat > ./target-home/.profile  <<-EOF
+	export DISPLAY=${DISPLAY}
+	export WAYLAND_DISPLAY=/tmp/wayland-1
 EOF
 
 setfacl -Rm m::rwx ./target-home/
