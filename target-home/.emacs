@@ -15,6 +15,7 @@
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages nil)
  '(savehist-mode t)
+ '(tool-bar-mode nil)
  '(which-key-mode t))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
