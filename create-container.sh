@@ -1,4 +1,6 @@
-#!/usr/bin/env bash
+#!/usr/bin/env nix-shell
+#!nix-shell -i bash
+#!nix-shell --packages nixos-install
 
 set -eu -o pipefail
 
