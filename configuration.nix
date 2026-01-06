@@ -6,6 +6,7 @@
 
 { config, pkgs, ... }:
 let
+  eca = (builtins.getFlake "github:/editor-code-assistant/eca/master").packages.x86_64-linux.default;
   vibe = (builtins.getFlake "github:/mistralai/mistral-vibe/main").packages.x86_64-linux.default;
   emacs-custom = (pkgs.emacs-pgtk.pkgs.withPackages (p: [
     p.avy
@@ -61,6 +62,7 @@ in {
   };
 
   environment.systemPackages = with pkgs; [
+    eca
     git
     emacs-custom
     gnumake

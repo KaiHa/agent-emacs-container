@@ -29,6 +29,8 @@
 ;; Put manual customization below this point ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+;; (package-refresh-contents)
+
 (use-package acp :ensure t :pin melpa) ;; dependency of agent-shell
 (use-package agent-shell
   :ensure t
@@ -39,3 +41,10 @@
     :api-key (lambda ()
 	       (string-trim
 		(shell-command-to-string "source ~/.vibe/.env; echo $MISTRAL_API_KEY"))))))
+
+(use-package eca
+  :ensure t
+  :pin melpa
+  :custom
+  (eca-chat-custom-model "github-copilot/claude-sonnet-4.5")
+  (eca-custom-command '("eca" "server")))
