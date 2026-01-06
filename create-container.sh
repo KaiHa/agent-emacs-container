@@ -24,14 +24,14 @@ mv --no-target-directory ${tmpdir} ${destdir}
 
 mkdir -p /etc/systemd/nspawn/
 cat > /etc/systemd/nspawn/agent-emacs.nspawn <<-EOF
-[Exec]
-  PrivateUsers=identity
-[Files]
-  Bind=$(readlink -f ./target-home/):/home/kai/
-  Bind=/tmp/.X11-unix
-  BindReadOnly=/run/user/$(id -u kai)/wayland-1:/tmp/wayland-1
-[Network]
-  Private=off
+	[Exec]
+	  PrivateUsers=identity
+	[Files]
+	  Bind=$(readlink -f ./target-home/):/home/kai/
+	  Bind=/tmp/.X11-unix
+	  BindReadOnly=/run/user/$(id -u kai)/wayland-1:/tmp/wayland-1
+	[Network]
+	  Private=off
 EOF
 
 cat > ./target-home/.profile  <<-EOF
