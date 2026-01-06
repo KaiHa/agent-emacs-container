@@ -17,8 +17,8 @@ chmod 755 ${tmpdir}
 mkdir -p ${tmpdir}/{boot,etc/nixos}
 cp configuration.nix ${tmpdir}/etc/nixos/
 nixos-install --no-root-password --root ${tmpdir}
-chattr -i ${destdir}/var/empty/
-rm --one-file-system -r ${destdir}
+chattr -i ${destdir}/var/empty/ || true
+rm --one-file-system -r ${destdir} || true
 chattr -i ${tmpdir}/var/empty/
 mv --no-target-directory ${tmpdir} ${destdir}
 
