@@ -32,3 +32,6 @@ cat > /etc/systemd/nspawn/agent-emacs.nspawn <<-EOF
 [Network]
   Private=off
 EOF
+
+setfacl -Rm m::rwx ./target-home/
+setfacl -Rm u:1000:rwx ./target-home/
