@@ -10,10 +10,13 @@ let
   vibe = (builtins.getFlake "github:/mistralai/mistral-vibe/main").packages.x86_64-linux.default;
   emacs-custom = (pkgs.emacs-pgtk.pkgs.withPackages (p: [
     p.avy
+    p.cmake-mode
     p.ess
+    p.haskell-mode
     p.iedit
     p.magit
     p.nix-mode
+    p.rust-mode
     p.treesit-grammars.with-all-grammars
   ]));
 in {
