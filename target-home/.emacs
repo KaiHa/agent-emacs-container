@@ -46,5 +46,4 @@
   :ensure t
   :pin melpa
   :custom
-  (eca-chat-custom-model "github-copilot/claude-sonnet-4.5")
   (eca-custom-command '("eca" "server")))
