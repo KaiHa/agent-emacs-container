@@ -41,3 +41,7 @@ EOF
 
 setfacl -Rm m::rwx ./target-home/
 setfacl -Rm u:1000:rwx ./target-home/
+
+machinectl start agent-emacs
+sleep 3
+machinectl shell agent-emacs /run/current-system/sw/bin/nix-channel --update
