@@ -57,7 +57,7 @@ in {
     uid = 1000;
     initialPassword = "nosecret";
     extraGroups = [
-      # "wheel"
+      "wheel"
     ];
   };
 
