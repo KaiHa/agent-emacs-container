@@ -1,3 +1,5 @@
 [alias]
 	st = status --short
 	lg = log --graph --oneline --decorate
+[safe]
+	directory = /home/kai/workspace
