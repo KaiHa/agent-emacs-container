@@ -5,8 +5,12 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(completion-styles '(basic partial-completion emacs22 flex))
+ '(custom-enabled-themes '(modus-operandi-tinted))
  '(fido-mode t)
+ '(fido-vertical-mode t)
+ '(frame-background-mode 'light)
  '(icomplete-mode t)
+ '(indent-tabs-mode nil)
  '(package-archive-priorities '(("gnu" . 9) ("melpa-stable" . 8)))
  '(package-archives
    '(("gnu" . "https://elpa.gnu.org/packages/")
@@ -15,6 +19,8 @@
      ("melpa" . "https://melpa.org/packages/")))
  '(package-selected-packages nil)
  '(savehist-mode t)
+ '(scroll-bar-mode nil)
+ '(tab-width 4)
  '(tool-bar-mode nil)
  '(which-key-mode t))
 (custom-set-faces
