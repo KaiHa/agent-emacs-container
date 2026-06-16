@@ -26,6 +26,12 @@ in {
   boot.loader.initScript.enable = true;
   boot.loader.grub.enable = false;
   boot.loader.systemd-boot.enable = false;
+  # cgroup remount is needed on Ubuntu 24.04
+  boot.postBootCommands = ''
+      umount /sys/fs/cgroup/systemd
+      umount /sys/fs/cgroup
+      mount -t cgroup2 cgroup2 /sys/fs/cgroup
+    '';
 
   console.enable = true;
 
