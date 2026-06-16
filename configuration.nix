@@ -65,10 +65,15 @@ in {
   };
 
   environment.systemPackages = with pkgs; [
+    binutils
     eca
-    git
     emacs-custom
+    file
+    gcc
+    gcc-arm-embedded
+    git
     gnumake
+    imagemagick
     universal-ctags
     vibe
   ];
