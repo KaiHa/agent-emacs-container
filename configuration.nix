@@ -72,6 +72,7 @@ in {
     gcc
     gcc-arm-embedded
     git
+    github-copilot-cli
     gnumake
     imagemagick
     universal-ctags

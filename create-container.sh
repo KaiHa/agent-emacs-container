@@ -4,6 +4,8 @@
 
 set -eu -o pipefail
 
+export NIXPKGS_ALLOW_UNFREE=1
+
 if machinectl show agent-emacs --property=State &> /dev/null
 then
     echo "ERROR: Container agent-emacs still running.  Please power it off first!"
