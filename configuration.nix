@@ -57,6 +57,8 @@ in {
 
   system.stateVersion = "25.11";
 
+  systemd.services.nix-daemon.serviceConfig.EnvironmentFile = "/etc/default/nix-daemon";
+
   time.timeZone = "Europe/Amsterdam";
 
   users.mutableUsers = false;

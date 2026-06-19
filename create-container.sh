@@ -41,6 +41,8 @@ cat > ./target-home/.profile  <<-EOF
 	export WAYLAND_DISPLAY=/tmp/wayland-1
 EOF
 
+touch ${destdir}/etc/default/nix-daemon
+
 setfacl -Rm m::rwx ./target-home/
 setfacl -Rm u:1000:rwx ./target-home/
 
