@@ -26,3 +26,24 @@ This repository contains a NixOS configuration for running Emacs and so called A
 #+begin_src sh
   machinectl bind agent-emacs ~/my-project /home/kai/workspace
 #+end_src
+
+* Export/Import
+
+#+name: servername
+: example.com
+
+#+caption: Export container into a tarball
+#+begin_src tmux :session default:export-agent-emacs :var srv=servername wdir=(identity default-directory)
+  cd ${wdir}
+  importctl -m export-tar agent-emacs ./agent-emacs.tar.gz \
+  && scp ./agent-emacs.tar.gz root@${srv}:/var/www/ \
+  && sha256sum ./agent-emacs.tar.gz | ssh root@${srv} "cat > /var/www/agent-emacs.tar.gz.sha256"
+#+end_src
+
+#+caption: Import container from tarball
+#+begin_src tmux :session default:import-agent-emacs :var srv=servername wdir=(identity default-directory)
+  cd ${wdir}
+  curl --remote-name-all https://${srv}/agent-emacs.tar.gz{,.sha256} \
+  && sha256sum --check agent-emacs.tar.gz.sha256 \
+  && importctl -m import-tar ./agent-emacs.tar.gz agent-emacs
+#+end_src
